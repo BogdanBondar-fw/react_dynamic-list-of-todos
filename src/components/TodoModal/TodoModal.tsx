@@ -7,10 +7,10 @@ import { Todo } from '../../types/Todo';
 type Props = {
   todo: Todo;
   userId: number;
-  selectedTodo: () => void;
+  onClose: () => void;
 };
 
-export const TodoModal: React.FC<Props> = ({ todo, userId, selectedTodo }) => {
+export const TodoModal: React.FC<Props> = ({ todo, userId, onClose }) => {
   const [user, setUser] = useState<User | null>(null);
   const [modalLoading, setModalLoading] = useState(false);
 
@@ -23,7 +23,7 @@ export const TodoModal: React.FC<Props> = ({ todo, userId, selectedTodo }) => {
 
   return (
     <div className="modal is-active" data-cy="modal">
-      <div className="modal-background" onClick={selectedTodo} />
+      <div className="modal-background" onClick={onClose} />
 
       {modalLoading ? (
         <Loader />
@@ -42,7 +42,7 @@ export const TodoModal: React.FC<Props> = ({ todo, userId, selectedTodo }) => {
               type="button"
               className="delete"
               data-cy="modal-close"
-              onClick={selectedTodo}
+              onClick={onClose}
             />
           </header>
 
